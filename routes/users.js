@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
-let session = require("express-session");
 let mysql = require("mysql");
 let uuid = require("uuid");
 
