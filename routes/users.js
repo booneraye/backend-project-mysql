@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
-
-var mysql = require("mysql");
-var uuid = require("uuid");
+let session = require("express-session");
+let mysql = require("mysql");
+let uuid = require("uuid");
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -46,7 +46,7 @@ router.route("/login").post((req, res) => {
   let sql = `SELECT username, email_address, password, access_level FROM users WHERE username="${username}"`;
   con.query(sql, function (err, result) {
     if (
-      // result[0].password &&
+      result[0].password &&
       checkHashedPassword(password, result[0].password)
     ) {
       let data = result.map((r) => ({
@@ -58,9 +58,10 @@ router.route("/login").post((req, res) => {
         token: uuid.v4(),
       }));
 
-      res.send(data[0]);
+      // res.render(`users/users`, { admin_username: data[0].username });
+      res.send(data[0])
     } else {
-      res.send({
+      res.status(400).send({
         status: "failed",
         message: "Username and Password not matched!",
       });

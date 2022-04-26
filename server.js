@@ -14,13 +14,16 @@ var corsOptions = {
 };
 
 // app.use(cors(corsOptions))
+app.use(express.static("public"))
 app.use(express.json());
+app.use(express.urlencoded({extended: true}))
+
+app.set("view engine", "ejs")
 
 //GMS
 const users = require("./routes/users")
 
 app.use("/api/v1/sample/", users);
-
 
 app.get("/", function(req, res) {
   res.send("Welcome to Sample API")

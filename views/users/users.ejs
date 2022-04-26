@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Users</title>
+  </head>
+  <body>
+    <table>
+      <th>
+        <tr>
+          <td>First Name</td>
+          <td>Last Name</td>
+          <td>Username</td>
+        </tr>
+      </th>
+      <tbody id="users"></tbody>
+    </table>
+    <script>
+      
+      fetch("/api/v1/sample/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          admin_username: "<%= locals.admin_username %>",
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          let users = "";
+          for (let i = 0; i < data.length; i++) {
+            users += `<tr><td>${data[i].first_name}</td><td>${data[i].last_name}</td><td>${data[i].username}</td></tr>`;
+          }
+          document.getElementById("users").innerHTML = users;
+          console.log(users);
+        });
+      
+    </script>
+  </body>
+</html>
