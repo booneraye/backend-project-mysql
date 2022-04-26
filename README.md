@@ -23,7 +23,7 @@
     INSERT INTO `users` (`id`, `first_name`, `last_name`, `address`, `post_code`, `contact_phone_number`, `email_address`, `username`, `password`, `access_level`) VALUES (2, 'User', '1', 'Calooncan City', '1234', '0909090909', 'sample@gmail.com', 'user1', '$2a$10$yhV38rtxsnAQARmDpsPHEOpq4UaNcx77DDMaesDGruo6G9i7WkPnW', 'user');
     INSERT INTO `users` (`id`, `first_name`, `last_name`, `address`, `post_code`, `contact_phone_number`, `email_address`, `username`, `password`, `access_level`) VALUES (3, 'User', '2', 'Calooncan City', '1234', '0909090909', 'sample@gmail.com', 'user2', '$2a$10$CWiJZtK.VP37ra7vggt83uaDDCKIqwnMvjOR.TE9OuOey6NJCGaXu', 'user');
     
-### INITIAL USER
+### INITIAL ADMIN USER
 - username: admin1
 - password: 1234
 
