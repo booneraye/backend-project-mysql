@@ -19,11 +19,11 @@ app.use(express.json());
 //GMS
 const users = require("./routes/users")
 
-app.use("/api/v1/healthnow/", users);
+app.use("/api/v1/sample/", users);
 
 
 app.get("/", function(req, res) {
-  res.send("Welcome to Healthnow API")
+  res.send("Welcome to Sample API")
 });
 
 app.listen(process.env.PORT || 5500, function () {

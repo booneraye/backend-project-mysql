@@ -8,7 +8,7 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "healthnow",
+  database: "test_database",
 });
 
 // generate hased password
@@ -27,6 +27,7 @@ const checkHashedPassword = (password, hased) => {
 
 router.route("/login").post((req, res) => {
   const { username, password } = req.body;
+  console.log(req.body);
   let sql = `SELECT username, email_address, password, access_level FROM users WHERE username="${username}"`;
   con.query(sql, function (err, result) {
     if (err) {
@@ -35,7 +36,10 @@ router.route("/login").post((req, res) => {
         message: err,
       });
     } else {
-      if (checkHashedPassword(password, result?.[0].password)) {
+      if (
+        // result[0].password &&
+        checkHashedPassword(password, result[0].password)
+      ) {
         let data = result.map((r) => ({
           username: r.username,
           email_address: r.email_address,
